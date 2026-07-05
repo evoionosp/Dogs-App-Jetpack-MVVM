@@ -3,6 +3,7 @@ package com.evoionosp.dogs.ui.breedlist
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.evoionosp.dogs.domain.repo.DogsRepository
+import com.evoionosp.dogs.domain.repo.RecentBreedsRepository
 import com.evoionosp.dogs.utils.Response
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -12,11 +13,17 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class BreedListViewModel @Inject constructor(val repository: DogsRepository) : ViewModel() {
+class BreedListViewModel @Inject constructor(
+    val repository: DogsRepository,
+    private val recentBreedsRepository: RecentBreedsRepository,
+) : ViewModel() {
 
     private val _uiState = MutableStateFlow(BreedListUiState())
     val uiState = _uiState.asStateFlow()
 
+    fun onBreedOpened(breedName: String) {
+        TODO()
+    }
 
     fun observeSubBreedList(breed: String) {
         viewModelScope.launch(Dispatchers.IO) {
